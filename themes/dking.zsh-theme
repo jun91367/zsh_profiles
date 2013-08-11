@@ -1,5 +1,12 @@
-# [ruby-1.9.2@gemset]
-DALLAS_CURRENT_RUBY_="%{$fg_bold[white]%}[%{$fg[green]%}\$(~/.rvm/bin/rvm-prompt i v g)%{$fg[white]%}]%{$reset_color%}"
+# [ruby-x.x.x-pxxx]
+if [ -e ~/.rvm/bin/rvm-prompt ]; then
+  DALLAS_CURRENT_RUBY_="%{$fg_bold[white]%}[%{$fg[green]%}\$(~/.rvm/bin/rvm-prompt i v g)%{$fg[white]%}]%{$reset_color%}"
+else
+  if which rbenv &> /dev/null; then
+    DALLAS_CURRENT_RUBY_="%{$fg_bold[white]%}[%{$fg[green]%}$(rbenv version | sed -e 's/ (set.*$//' -e 's/^ruby-//')%{$fg[white]%}]%{$reset_color%}"
+  fi
+fi
+#DALLAS_CURRENT_RUBY_="%{$fg_bold[white]%}[%{$fg[green]%}$(rbenv version | sed -e 's/ (set.*$//' -e 's/^ruby-//')%{$fg[white]%}]%{$reset_color%}"
 # Current filepath. If in a git repository.
 DALLAS_CURRENT_LOCA_="%{$fg_bold[green]%}%p%{$fg[cyan]%}%c\$(git_prompt_info)% "
 # username.
